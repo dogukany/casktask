@@ -1,15 +1,13 @@
 import { NotificationType } from "@/constants/notification";
 import { CaskRemoteMessage, Notification } from "@/lib/types/notification";
 import {
-  AuthorizationStatus,
   FirebaseMessagingTypes,
   getMessaging,
   getToken,
-  hasPermission,
-  requestPermission,
 } from "@react-native-firebase/messaging";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import * as Notifications from 'expo-notifications';
 
 import { parseStoredArray, storage } from "./storage";
 dayjs.extend(relativeTime);
@@ -22,20 +20,22 @@ dayjs.extend(relativeTime);
 export const requestNotificationPermission = async (): Promise<
   string | null
 > => {
-  const enabled = await hasPermission(getMessaging());
-
-  if (!enabled) {
-    const authStatus = await requestPermission(getMessaging());
-    if (
-      authStatus !== AuthorizationStatus.AUTHORIZED &&
-      authStatus !== AuthorizationStatus.PROVISIONAL
-    ) {
-      // Kullanıcı izin vermediyse null döner
+  try {
+    // Expo notifications ile permission iste
+    const { status } = await Notifications.requestPermissionsAsync();
+    
+    if (status !== 'granted') {
+      console.log('Notification permission not granted');
       return null;
     }
-  }
 
-  return enabled ? await getToken(getMessaging()) : null;
+    // FCM token al
+    const token = await getToken(getMessaging());
+    return token;
+  } catch (error) {
+    console.error('Error requesting notification permission:', error);
+    return null;
+  }
 };
 
 /**

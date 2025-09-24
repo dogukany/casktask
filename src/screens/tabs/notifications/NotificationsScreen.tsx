@@ -1,12 +1,15 @@
+import { NotificationItem } from "@/components/notification-item";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { ScreenHeader } from "@/components/ui/screen-header";
 import { Notification } from "@/lib/types/notification";
+import { clearAllNotifications } from "@/lib/utils/notifications";
 import { parseStoredArray } from "@/lib/utils/storage";
 import { FlashList } from "@shopify/flash-list";
 import React, { useMemo } from "react";
-import { RefreshControl } from "react-native";
+import { Alert, RefreshControl } from "react-native";
 import { useMMKVString } from "react-native-mmkv";
+import { IconButton } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./NotificationsScreen.styles";
 
@@ -18,6 +21,23 @@ export const NotificationsScreen = () => {
     return parseStoredArray<Notification>(notifications);
   }, [notifications]);
 
+  const handleClearNotifications = () => {
+    Alert.alert(
+      "Clear All Notifications",
+      "Are you sure you want to clear all notifications? This action cannot be undone.",
+      [
+        { text: "Cancel", style: "cancel" },
+        { 
+          text: "Clear All", 
+          style: "destructive",
+          onPress: () => clearAllNotifications()
+        },
+      ]
+    );
+  };
+
+
+
 
   return (
     <ThemedView style={[styles.container, { paddingTop: top }]}>
@@ -25,6 +45,15 @@ export const NotificationsScreen = () => {
       <ScreenHeader 
         title="Notifications" 
         subtitle={`${notificationsArray.length} notifications`}
+        rightElement={notificationsArray.length > 0 ? (
+          <IconButton
+            icon="delete-sweep"
+            iconColor="#666"
+            size={20}
+            onPress={handleClearNotifications}
+            style={styles.clearIconButton}
+          />
+        ) : undefined}
       />
 
       {/* Content */}
@@ -43,14 +72,7 @@ export const NotificationsScreen = () => {
           //Page is already dynamic with useMMKVString hook but kept for user clarity
           refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} />}
           renderItem={({ item }) => (
-            <ThemedView style={styles.notificationItem}>
-              <ThemedText style={styles.notificationTitle}>
-                {item.title}
-              </ThemedText>
-              <ThemedText style={styles.notificationMessage}>
-                {item.message}
-              </ThemedText>
-            </ThemedView>
+            <NotificationItem notification={item} />
           )}
           showsVerticalScrollIndicator={false}
         />

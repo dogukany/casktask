@@ -1,3 +1,9 @@
+import { MMKV } from "react-native-mmkv";
+
+/**
+ * Global MMKV storage instance
+ */
+export const storage = new MMKV();
 /**
  * Helper functions for parsing and handling stored data from MMKV or other storage solutions
  */

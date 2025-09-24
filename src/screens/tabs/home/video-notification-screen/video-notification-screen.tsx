@@ -47,7 +47,6 @@ export const VideoNotificationScreen = () => {
   const onError = () => {
     setVideoError(true);
   };
-  console.log(videoId)
 
   if (!notification) {
     return (
@@ -98,6 +97,8 @@ export const VideoNotificationScreen = () => {
                   height={200}
                   play={playing}
                   videoId={videoId}
+                  onChangeState={onStateChange}
+                  onError={onError}
                 />
               </View>
             </View>

@@ -20,7 +20,7 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { styles } from "./SendScreen.styles";
+import { styles } from "./send-screen.styles";
 
 const NotificationTypeButton = ({
   type,
@@ -148,7 +148,7 @@ export const SendScreen = () => {
 
           {/* Delay Input */}
           <View style={styles.section}>
-            <ThemedText style={styles.label}>Delay (seconds)</ThemedText>
+            <ThemedText style={styles.label}>Delay (miliseconds)</ThemedText>
             <Controller
               name="delay"
               control={form.control}

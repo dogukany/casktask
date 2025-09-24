@@ -13,7 +13,7 @@ import { Alert, RefreshControl } from "react-native";
 import { useMMKVString } from "react-native-mmkv";
 import { IconButton } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { styles } from "./NotificationsScreen.styles";
+import { styles } from "./notifications-screen.styles";
 
 export const NotificationsScreen = () => {
   const { top } = useSafeAreaInsets();

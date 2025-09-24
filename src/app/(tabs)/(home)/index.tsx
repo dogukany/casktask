@@ -1,3 +1,3 @@
-import { HomeScreen } from '@/screens/tabs/home/HomeScreen';
+import { HomeScreen } from '@/screens/tabs/home';
 
 export default HomeScreen;

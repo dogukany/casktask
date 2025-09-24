@@ -1,3 +1,3 @@
-import SendScreen from "@/screens/tabs/send/send-screen";
+import { SendScreen } from "@/screens/tabs/send/SendScreen";
 
 export default SendScreen;

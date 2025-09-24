@@ -1,5 +1,6 @@
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
+import { ScreenHeader } from "@/components/ui/screen-header";
 import { Notification } from "@/lib/types/notification";
 import { parseStoredArray } from "@/lib/utils/storage";
 import { FlashList } from "@shopify/flash-list";
@@ -7,9 +8,9 @@ import React, { useMemo } from "react";
 import { RefreshControl } from "react-native";
 import { useMMKVString } from "react-native-mmkv";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { styles } from "./notification-screen.styles";
+import { styles } from "./NotificationsScreen.styles";
 
-const NotificationsScreen = () => {
+export const NotificationsScreen = () => {
   const { top } = useSafeAreaInsets();
   const [notifications] = useMMKVString("notifications");
 
@@ -21,9 +22,10 @@ const NotificationsScreen = () => {
   return (
     <ThemedView style={[styles.container, { paddingTop: top }]}>
       {/* Header */}
-      <ThemedView style={styles.header}>
-        <ThemedText style={styles.headerTitle}>Notifications</ThemedText>
-      </ThemedView>
+      <ScreenHeader 
+        title="Notifications" 
+        subtitle={`${notificationsArray.length} notifications`}
+      />
 
       {/* Content */}
       {notificationsArray.length === 0 ? (
@@ -56,5 +58,3 @@ const NotificationsScreen = () => {
     </ThemedView>
   );
 };
-
-export default NotificationsScreen;

@@ -3,8 +3,8 @@ import { ThemedView } from "@/components/themed-view";
 import { ScreenHeader } from "@/components/ui/screen-header";
 import { NotificationType } from "@/constants/notification";
 import {
-  NotificationFormData,
-  notificationFormSchema,
+    NotificationFormData,
+    notificationFormSchema,
 } from "@/lib/types/validation";
 import { useSendNotificationMutation } from "@/service/mutations/notification-mutations";
 import { useNotificationPermissionsQuery } from "@/service/queries";
@@ -12,12 +12,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
-  Alert,
-  Linking,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-  View,
+    Alert,
+    Linking,
+    ScrollView,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./send-screen.styles";

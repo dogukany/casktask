@@ -1,7 +1,9 @@
+import { useNotificationClickHandler } from '@/hooks/use-notification-click-handler';
 import { Stack } from 'expo-router';
 import React from 'react';
 
 export default function HomeLayout() {
+  useNotificationClickHandler();
   return (
     <Stack>
       <Stack.Screen

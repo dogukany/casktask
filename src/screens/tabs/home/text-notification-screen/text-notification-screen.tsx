@@ -2,15 +2,14 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { ScreenHeader } from "@/components/ui/screen-header";
 import { formatTime, getTypeIcon } from "@/lib/utils/notifications";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import React, { useMemo } from "react";
-import { ScrollView, TouchableOpacity, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./text-notification-screen.styles";
 
 export const TextNotificationScreen = () => {
   const { top } = useSafeAreaInsets();
-  const router = useRouter();
   const params = useLocalSearchParams<{
     notification: string;
   }>();
@@ -26,9 +25,7 @@ export const TextNotificationScreen = () => {
     }
   }, [params.notification]);
 
-  const handleBack = () => {
-    router.back();
-  };
+
 
   if (!notification) {
     return (
@@ -44,11 +41,7 @@ export const TextNotificationScreen = () => {
       <ScreenHeader
         title="Text Notification"
         subtitle={notification.title}
-        leftElement={
-          <TouchableOpacity onPress={handleBack} style={styles.backButton}>
-            <ThemedText style={styles.backIcon}>←</ThemedText>
-          </TouchableOpacity>
-        }
+        showBackButton
       />
 
       <ScrollView

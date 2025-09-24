@@ -15,6 +15,9 @@ export const styles = StyleSheet.create({
   headerLeft: {
     marginRight: 16,
   },
+  backButton: {
+    margin: 0,
+  },
   headerText: {
     flex: 1,
   },

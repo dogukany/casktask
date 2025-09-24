@@ -2,16 +2,15 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { ScreenHeader } from "@/components/ui/screen-header";
 import { extractYouTubeVideoId, formatTime, getTypeIcon } from "@/lib/utils/notifications";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import React, { useMemo, useState } from "react";
-import { ScrollView, TouchableOpacity, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { styles } from "./video-notification-screen.styles";
 
 export const VideoNotificationScreen = () => {
   const { top } = useSafeAreaInsets();
-  const router = useRouter();
   const [playing, setPlaying] = useState(false);
   const [videoError, setVideoError] = useState(false);
   
@@ -38,9 +37,7 @@ export const VideoNotificationScreen = () => {
   }, [notification?.youtubeUrl]);
 
 
-  const handleBack = () => {
-    router.back();
-  };
+
 
   const onStateChange = (state: string) => {
     if (state === 'ended') {
@@ -66,11 +63,7 @@ export const VideoNotificationScreen = () => {
       <ScreenHeader
         title="Video Notification"
         subtitle={notification.title}
-        leftElement={
-          <TouchableOpacity onPress={handleBack} style={styles.backButton}>
-            <ThemedText style={styles.backIcon}>←</ThemedText>
-          </TouchableOpacity>
-        }
+        showBackButton
       />
 
       <ScrollView

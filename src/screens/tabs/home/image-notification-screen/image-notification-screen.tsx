@@ -2,15 +2,14 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { ScreenHeader } from "@/components/ui/screen-header";
 import { formatTime, getTypeIcon } from "@/lib/utils/notifications";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import React, { useMemo, useState } from "react";
-import { Image, ScrollView, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./image-notification-screen.styles";
 
 export const ImageNotificationScreen = () => {
   const { top } = useSafeAreaInsets();
-  const router = useRouter();
   const [imageLoadError, setImageLoadError] = useState(false);
   
   const params = useLocalSearchParams<{
@@ -29,9 +28,7 @@ export const ImageNotificationScreen = () => {
     }
   }, [params.notification]);
 
-  const handleBack = () => {
-    router.back();
-  };
+
 
   const handleImageError = () => {
     setImageLoadError(true);
@@ -51,11 +48,7 @@ export const ImageNotificationScreen = () => {
       <ScreenHeader
         title="Image Notification"
         subtitle={notification.title}
-        leftElement={
-          <TouchableOpacity onPress={handleBack} style={styles.backButton}>
-            <ThemedText style={styles.backIcon}>←</ThemedText>
-          </TouchableOpacity>
-        }
+        showBackButton
       />
 
       <ScrollView

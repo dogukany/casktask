@@ -21,7 +21,6 @@ export const VideoNotificationScreen = () => {
   // Get notification directly from params with error handling
   const notification = useMemo(() => {
     if (!params.notification) return null;
-    
     try {
       return JSON.parse(params.notification);
     } catch (error) {
@@ -48,6 +47,7 @@ export const VideoNotificationScreen = () => {
   const onError = () => {
     setVideoError(true);
   };
+  console.log(videoId)
 
   if (!notification) {
     return (
@@ -98,8 +98,6 @@ export const VideoNotificationScreen = () => {
                   height={200}
                   play={playing}
                   videoId={videoId}
-                  onChangeState={onStateChange}
-                  onError={onError}
                 />
               </View>
             </View>

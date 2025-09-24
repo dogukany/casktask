@@ -142,6 +142,9 @@ export const clearAllNotifications = (): void => {
 
 /**
  * Extract YouTube video ID from URL
+ * Supports both formats:
+ * - https://www.youtube.com/watch?v=aqz-KE-bpKQ
+ * - https://youtu.be/aqz-KE-bpKQ
  */
 export const extractYouTubeVideoId = (url: string): string | null => {
   if (!url) return null;
@@ -149,10 +152,17 @@ export const extractYouTubeVideoId = (url: string): string | null => {
   try {
     const parsed = new URL(url);
     
-    // Video ID → youtu.be domainindeyse pathname, değilse v parametresi
-    const videoId = parsed.pathname.replace("/", "")
+    // youtu.be format (short URL)
+    if (parsed.hostname === 'youtu.be') {
+      return parsed.pathname.replace('/', '') || null;
+    }
     
-    return videoId;
+    // youtube.com format (long URL)
+    if (parsed.hostname === 'www.youtube.com' || parsed.hostname === 'youtube.com') {
+      return parsed.searchParams.get('v') || null;
+    }
+    
+    return null;
   } catch {
     return null;
   }

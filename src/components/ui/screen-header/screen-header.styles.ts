@@ -12,6 +12,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  headerLeft: {
+    marginRight: 16,
+  },
   headerText: {
     flex: 1,
   },

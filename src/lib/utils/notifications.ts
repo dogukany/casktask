@@ -139,3 +139,36 @@ export const handleIncomingNotification = (fcmMessage: FirebaseMessagingTypes.Re
 export const clearAllNotifications = (): void => {
   storage.set("notifications", JSON.stringify([]));
 };
+
+/**
+ * Extract YouTube video ID from URL
+ */
+export const extractYouTubeVideoId = (url: string): string | null => {
+  if (!url) return null;
+  
+  try {
+    const parsed = new URL(url);
+    
+    // Video ID → youtu.be domainindeyse pathname, değilse v parametresi
+    const videoId = parsed.pathname.replace("/", "")
+    
+    return videoId;
+  } catch {
+    return null;
+  }
+};
+
+/**
+ * Extract start time from YouTube URL
+ */
+export const extractYouTubeStartTime = (url: string): number | null => {
+  if (!url) return null;
+  
+  try {
+    const parsed = new URL(url);
+    const time = parsed.searchParams.get("t");
+    return time ? parseInt(time) : null;
+  } catch {
+    return null;
+  }
+};

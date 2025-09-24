@@ -7,6 +7,7 @@ import { styles } from './screen-header.styles';
 type ScreenHeaderProps = {
   title: string;
   subtitle?: string;
+  leftElement?: React.ReactNode;
   rightElement?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
 };
@@ -14,12 +15,18 @@ type ScreenHeaderProps = {
 export function ScreenHeader({ 
   title, 
   subtitle, 
+  leftElement,
   rightElement, 
   style 
 }: ScreenHeaderProps) {
   return (
     <ThemedView style={[styles.header, style]}>
       <ThemedView style={styles.headerContent}>
+        {leftElement && (
+          <ThemedView style={styles.headerLeft}>
+            {leftElement}
+          </ThemedView>
+        )}
         <ThemedView style={styles.headerText}>
           <ThemedText style={styles.headerTitle}>{title}</ThemedText>
           {subtitle && (

@@ -18,12 +18,8 @@ export const NotificationItem = ({
     if (onPress) {
       onPress(notification);
     } else {
-      // Default handling
       if (notification.type === 2 && notification.imageUrl) {
-        // Image notification - burada resmi büyütecek modal açabilirsin
-        console.log("Image notification clicked:", notification.imageUrl);
       } else if (notification.type === 3 && notification.youtubeUrl) {
-        // Video notification - YouTube'da aç
         Linking.openURL(notification.youtubeUrl);
       }
     }

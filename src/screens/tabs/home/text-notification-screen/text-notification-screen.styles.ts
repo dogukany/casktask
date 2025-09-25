@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
     padding: 16,
   },
   
-  // Header Styles
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -47,7 +46,6 @@ export const styles = StyleSheet.create({
     marginTop: 2,
   },
 
-  // Card Styles
   notificationCard: {
     backgroundColor: '#ffffff',
     borderRadius: 16,
@@ -93,7 +91,6 @@ export const styles = StyleSheet.create({
     opacity: 0.6,
   },
 
-  // Message Styles
   messageSection: {
     paddingVertical: 16,
     borderTopWidth: 1,
@@ -108,7 +105,6 @@ export const styles = StyleSheet.create({
     color: '#334155',
   },
 
-  // Meta Styles
   metaSection: {
     backgroundColor: '#f8fafc',
     borderRadius: 12,

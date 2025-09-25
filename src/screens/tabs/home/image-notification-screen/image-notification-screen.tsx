@@ -16,7 +16,6 @@ export const ImageNotificationScreen = () => {
     notification: string;
   }>();
 
-  // Get notification directly from params with error handling
   const notification = useMemo(() => {
     if (!params.notification) return null;
     

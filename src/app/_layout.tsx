@@ -14,12 +14,10 @@ import { onMessage, setBackgroundMessageHandler } from "@react-native-firebase/m
 import { QueryClientProvider } from "@tanstack/react-query";
 import { useColorScheme } from "react-native";
 
-// FCM arka planda mesaj dinleme
 setBackgroundMessageHandler(firebaseMessaging, async (remoteMessage) => {
     handleIncomingNotification(remoteMessage);
 });
 
-// FCM ön planda mesaj dinleme
 onMessage(firebaseMessaging, (remoteMessage) => {
     handleIncomingNotification(remoteMessage);
 }); 

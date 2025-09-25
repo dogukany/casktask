@@ -43,11 +43,11 @@ export const requestNotificationPermission = async (): Promise<
  */
 export const getTypeIcon = (type: any): string => {
   switch (type) {
-    case 1: // NotificationType.TEXT
+    case 1: 
       return "💬";
-    case 2: // NotificationType.IMAGE
+    case 2: 
       return "🖼️";
-    case 3: // NotificationType.VIDEO
+    case 3: 
       return "🎥";
     default:
       return "📢";
@@ -59,11 +59,11 @@ export const getTypeIcon = (type: any): string => {
  */
 export const getTypeLabel = (type: any): string => {
   switch (type) {
-    case 1: // NotificationType.TEXT
+    case 1: 
       return "Text";
-    case 2: // NotificationType.IMAGE
+    case 2: 
       return "Image";
-    case 3: // NotificationType.VIDEO
+    case 3: 
       return "Video";
     default:
       return "Unknown";

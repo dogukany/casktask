@@ -3,9 +3,9 @@ import { CaskRemoteMessage } from "@/lib/types";
 import { parseNotificationFromFCM } from "@/lib/utils/notifications";
 import { firebaseMessaging } from "@/service/firebase";
 import {
-    FirebaseMessagingTypes,
-    getInitialNotification,
-    onNotificationOpenedApp,
+  FirebaseMessagingTypes,
+  getInitialNotification,
+  onNotificationOpenedApp,
 } from "@react-native-firebase/messaging";
 import { useRouter } from "expo-router";
 import { useCallback, useEffect } from "react";

@@ -4,7 +4,7 @@ import { ScreenHeader } from "@/components/ui/screen-header";
 import { formatTime, getTypeIcon } from "@/lib/utils/notifications";
 import { useLocalSearchParams } from "expo-router";
 import React, { useMemo } from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./text-notification-screen.styles";
 
@@ -50,49 +50,49 @@ export const TextNotificationScreen = () => {
         showsVerticalScrollIndicator={false}
       >
         {/* Notification Card */}
-        <View style={styles.notificationCard}>
+        <ThemedView style={styles.notificationCard}>
           {/* Header Section */}
-          <View style={styles.cardHeader}>
-            <View style={styles.iconContainer}>
+          <ThemedView style={styles.cardHeader}>
+            <ThemedView style={styles.iconContainer}>
               <ThemedText style={styles.iconText}>
                 {getTypeIcon(notification.type)}
               </ThemedText>
-            </View>
-            <View style={styles.cardHeaderText}>
+            </ThemedView>
+            <ThemedView style={styles.cardHeaderText}>
               <ThemedText style={styles.cardTitle}>
                 {notification.title}
               </ThemedText>
               <ThemedText style={styles.cardSubtitle}>
                 Text Notification • {formatTime(notification.timestamp)}
               </ThemedText>
-            </View>
-          </View>
+            </ThemedView>
+          </ThemedView>
 
           {/* Message Section */}
           {notification.message && (
-            <View style={styles.messageSection}>
+            <ThemedView style={styles.messageSection}>
               <ThemedText style={styles.messageText}>
                 {notification.message}
               </ThemedText>
-            </View>
+            </ThemedView>
           )}
 
           {/* Meta Information */}
-          <View style={styles.metaSection}>
-            <View style={styles.metaRow}>
+          <ThemedView style={styles.metaSection}>
+            <ThemedView style={styles.metaRow}>
               <ThemedText style={styles.metaLabel}>Type:</ThemedText>
               <ThemedText style={styles.metaValue}>
                 Text Notification
               </ThemedText>
-            </View>
-            <View style={styles.metaRow}>
+            </ThemedView>
+            <ThemedView style={styles.metaRow}>
               <ThemedText style={styles.metaLabel}>Received:</ThemedText>
               <ThemedText style={styles.metaValue}>
                 {new Date(notification.timestamp).toLocaleString()}
               </ThemedText>
-            </View>
-          </View>
-        </View>
+            </ThemedView>
+          </ThemedView>
+        </ThemedView>
       </ScrollView>
     </ThemedView>
   );

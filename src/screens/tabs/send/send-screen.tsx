@@ -2,9 +2,10 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { ScreenHeader } from "@/components/ui/screen-header";
 import { NotificationType } from "@/constants/notification";
+import { useThemeColor } from "@/hooks/use-theme-color";
 import {
-    NotificationFormData,
-    notificationFormSchema,
+  NotificationFormData,
+  notificationFormSchema,
 } from "@/lib/types/validation";
 import { useSendNotificationMutation } from "@/service/mutations/notification-mutations";
 import { useNotificationPermissionsQuery } from "@/service/queries";
@@ -12,12 +13,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
-    Alert,
-    Linking,
-    ScrollView,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Alert,
+  Linking,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "./send-screen.styles";
@@ -47,6 +47,10 @@ const NotificationTypeButton = ({
 
 export const SendScreen = () => {
   const { top } = useSafeAreaInsets();
+  const borderColor = useThemeColor({}, "text");
+  const inputBackgroundColor = useThemeColor({}, "background");
+  const textColor = useThemeColor({}, "text");
+  
   const {
     data: fcmToken,
     isError,
@@ -114,13 +118,13 @@ export const SendScreen = () => {
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <ThemedView style={styles.form}>
           {/* Notification Type Selection */}
-          <View style={styles.section}>
+          <ThemedView style={styles.section}>
             <ThemedText style={styles.label}>Notification Type</ThemedText>
             <Controller
               name="type"
               control={form.control}
               render={({ field: { onChange, value } }) => (
-                <View style={styles.typeContainer}>
+                <ThemedView style={styles.typeContainer}>
                   <NotificationTypeButton
                     type={NotificationType.TEXT}
                     title="Text"
@@ -139,23 +143,28 @@ export const SendScreen = () => {
                     isActive={value === NotificationType.VIDEO}
                     onPress={onChange}
                   />
-                </View>
+                </ThemedView>
               )}
             />
-          </View>
+          </ThemedView>
 
 
 
           {/* Delay Input */}
-          <View style={styles.section}>
+          <ThemedView style={styles.section}>
             <ThemedText style={styles.label}>Delay (miliseconds)</ThemedText>
             <Controller
               name="delay"
               control={form.control}
               render={({ field: { onChange, value } }) => (
                 <TextInput
-                  style={[styles.input, errors.delay && styles.inputError]}
+                  style={[
+                    styles.input,
+                    { borderColor, backgroundColor: inputBackgroundColor, color: textColor },
+                    errors.delay && styles.inputError
+                  ]}
                   placeholder="0"
+                  placeholderTextColor={textColor}
                   keyboardType="numeric"
                   onChangeText={(text) => onChange(parseInt(text) || 0)}
                   value={value.toString()}
@@ -167,17 +176,17 @@ export const SendScreen = () => {
                 {errors.delay.message}
               </ThemedText>
             )}
-          </View>
+          </ThemedView>
 
           {/* Notification Status & Send Button */}
           {isLoading ? (
-            <View style={styles.statusContainer}>
+            <ThemedView style={[styles.statusContainer, { borderColor }]}>
               <ThemedText style={styles.statusText}>
                 Checking notification permissions...
               </ThemedText>
-            </View>
+            </ThemedView>
           ) : isError ? (
-            <View style={styles.statusContainer}>
+            <ThemedView style={[styles.statusContainer, { borderColor }]}>
               <ThemedText style={styles.errorStatusText}>
                 ❌ Notification permissions denied
               </ThemedText>
@@ -192,9 +201,9 @@ export const SendScreen = () => {
                   Go to Settings
                 </ThemedText>
               </TouchableOpacity>
-            </View>
+            </ThemedView>
           ) : !fcmToken ? (
-            <View style={styles.statusContainer}>
+            <ThemedView style={[styles.statusContainer, { borderColor }]}>
               <ThemedText style={styles.errorStatusText}>
                 ⚠️ No FCM token available
               </ThemedText>
@@ -209,17 +218,17 @@ export const SendScreen = () => {
                   Check Permissions
                 </ThemedText>
               </TouchableOpacity>
-            </View>
+            </ThemedView>
           ) : (
-            <View>
-              <View style={styles.statusContainer}>
+            <ThemedView>
+              <ThemedView style={[styles.statusContainer, { borderColor }]}>
                 <ThemedText style={styles.successStatusText}>
                   ✅ Ready to send notifications
                 </ThemedText>
                 <ThemedText style={styles.statusDescription}>
                   FCM Token: {fcmToken.substring(0, 20)}...
                 </ThemedText>
-              </View>
+              </ThemedView>
               <TouchableOpacity
                 style={[
                   styles.sendButton,
@@ -233,7 +242,7 @@ export const SendScreen = () => {
                   {isSubmitting ? "Sending..." : "Send Notification"}
                 </ThemedText>
               </TouchableOpacity>
-            </View>
+            </ThemedView>
           )}
         </ThemedView>
       </ScrollView>

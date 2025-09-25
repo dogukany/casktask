@@ -17,11 +17,9 @@ export const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ddd',
     borderRadius: 8,
     padding: 12,
     fontSize: 16,
-    backgroundColor: '#f9f9f9',
   },
   inputError: {
     borderColor: '#ff4444',
@@ -40,10 +38,8 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderWidth: 1,
-    borderColor: '#ddd',
     borderRadius: 8,
     alignItems: 'center',
-    backgroundColor: '#f9f9f9',
   },
   typeButtonSelected: {
     backgroundColor: '#007AFF',
@@ -72,12 +68,10 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
   },
   statusContainer: {
-    backgroundColor: '#f8f9fa',
     padding: 16,
     borderRadius: 8,
     marginBottom: 16,
     borderWidth: 1,
-    borderColor: '#e9ecef',
   },
   statusText: {
     fontSize: 14,

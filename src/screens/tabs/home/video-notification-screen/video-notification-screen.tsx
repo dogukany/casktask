@@ -4,7 +4,7 @@ import { ScreenHeader } from "@/components/ui/screen-header";
 import { extractYouTubeVideoId, formatTime, getTypeIcon } from "@/lib/utils/notifications";
 import { useLocalSearchParams } from "expo-router";
 import React, { useMemo, useState } from "react";
-import { ScrollView, View } from "react-native";
+import { ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { styles } from "./video-notification-screen.styles";
@@ -71,28 +71,28 @@ export const VideoNotificationScreen = () => {
         showsVerticalScrollIndicator={false}
       >
         {/* Notification Card */}
-        <View style={styles.notificationCard}>
+        <ThemedView style={styles.notificationCard}>
           {/* Header Section */}
-          <View style={styles.cardHeader}>
-            <View style={styles.iconContainer}>
+          <ThemedView style={styles.cardHeader}>
+            <ThemedView style={styles.iconContainer}>
               <ThemedText style={styles.iconText}>
                 {getTypeIcon(notification.type)}
               </ThemedText>
-            </View>
-            <View style={styles.cardHeaderText}>
+            </ThemedView>
+            <ThemedView style={styles.cardHeaderText}>
               <ThemedText style={styles.cardTitle}>
                 {notification.title}
               </ThemedText>
               <ThemedText style={styles.cardSubtitle}>
                 Video Notification • {formatTime(notification.timestamp)}
               </ThemedText>
-            </View>
-          </View>
+            </ThemedView>
+          </ThemedView>
 
           {/* Video Section */}
           {videoId && !videoError && (
-            <View style={styles.videoSection}>
-              <View style={styles.videoContainer}>
+            <ThemedView style={styles.videoSection}>
+              <ThemedView style={styles.videoContainer}>
                 <YoutubePlayer
                   height={200}
                   play={playing}
@@ -100,63 +100,63 @@ export const VideoNotificationScreen = () => {
                   onChangeState={onStateChange}
                   onError={onError}
                 />
-              </View>
-            </View>
+              </ThemedView>
+            </ThemedView>
           )}
 
           {/* Video Error or No Video */}
           {(!videoId || videoError) && notification.youtubeUrl && (
-            <View style={styles.videoSection}>
-              <View style={styles.videoLoadError}>
+            <ThemedView style={styles.videoSection}>
+              <ThemedView style={styles.videoLoadError}>
                 <ThemedText style={styles.videoErrorText}>
                   🎥{'\n'}
                   {videoError ? 'Video could not be loaded' : 'Invalid YouTube URL'}
                 </ThemedText>
-              </View>
-            </View>
+              </ThemedView>
+            </ThemedView>
           )}
 
           {/* Message Section */}
           {notification.message && (
-            <View style={styles.messageSection}>
+            <ThemedView style={styles.messageSection}>
               <ThemedText style={styles.messageText}>
                 {notification.message}
               </ThemedText>
-            </View>
+            </ThemedView>
           )}
 
           {/* Meta Information */}
-          <View style={styles.metaSection}>
-            <View style={styles.metaRow}>
+          <ThemedView style={styles.metaSection}>
+            <ThemedView style={styles.metaRow}>
               <ThemedText style={styles.metaLabel}>Type:</ThemedText>
               <ThemedText style={styles.metaValue}>
                 Video Notification
               </ThemedText>
-            </View>
-            <View style={styles.metaRow}>
+            </ThemedView>
+            <ThemedView style={styles.metaRow}>
               <ThemedText style={styles.metaLabel}>Received:</ThemedText>
               <ThemedText style={styles.metaValue}>
                 {new Date(notification.timestamp).toLocaleString()}
               </ThemedText>
-            </View>
+            </ThemedView>
             {notification.youtubeUrl && (
-              <View style={styles.metaRow}>
+              <ThemedView style={styles.metaRow}>
                 <ThemedText style={styles.metaLabel}>Video URL:</ThemedText>
                 <ThemedText style={styles.metaValue} numberOfLines={1}>
                   {notification.youtubeUrl}
                 </ThemedText>
-              </View>
+              </ThemedView>
             )}
             {videoId && (
-              <View style={styles.metaRow}>
+              <ThemedView style={styles.metaRow}>
                 <ThemedText style={styles.metaLabel}>Video ID:</ThemedText>
                 <ThemedText style={styles.metaValue}>
                   {videoId}
                 </ThemedText>
-              </View>
+              </ThemedView>
             )}
-          </View>
-        </View>
+          </ThemedView>
+        </ThemedView>
       </ScrollView>
     </ThemedView>
   );

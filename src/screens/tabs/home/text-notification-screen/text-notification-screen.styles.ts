@@ -17,14 +17,11 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#e2e8f0',
-    backgroundColor: '#ffffff',
   },
   backButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#f8fafc',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -47,7 +44,6 @@ export const styles = StyleSheet.create({
   },
 
   notificationCard: {
-    backgroundColor: '#ffffff',
     borderRadius: 16,
     padding: 20,
     marginBottom: 16,
@@ -70,7 +66,6 @@ export const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#f0f4f8',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -94,19 +89,15 @@ export const styles = StyleSheet.create({
   messageSection: {
     paddingVertical: 16,
     borderTopWidth: 1,
-    borderTopColor: '#f1f5f9',
     borderBottomWidth: 1,
-    borderBottomColor: '#f1f5f9',
     marginBottom: 16,
   },
   messageText: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#334155',
   },
 
   metaSection: {
-    backgroundColor: '#f8fafc',
     borderRadius: 12,
     padding: 16,
   },

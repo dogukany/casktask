@@ -18,13 +18,11 @@ export const styles = StyleSheet.create({
     paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#e2e8f0',
-    backgroundColor: '#ffffff',
   },
   backButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#f8fafc',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -47,7 +45,6 @@ export const styles = StyleSheet.create({
   },
 
   notificationCard: {
-    backgroundColor: '#ffffff',
     borderRadius: 16,
     padding: 20,
     marginBottom: 16,
@@ -70,7 +67,6 @@ export const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#f0f4f8',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
@@ -102,7 +98,6 @@ export const styles = StyleSheet.create({
   imageContainer: {
     borderRadius: 12,
     overflow: 'hidden',
-    backgroundColor: '#f8fafc',
   },
   notificationImage: {
     width: '100%',
@@ -114,7 +109,6 @@ export const styles = StyleSheet.create({
     height: 200,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f1f5f9',
   },
   imageErrorText: {
     fontSize: 14,
@@ -137,7 +131,6 @@ export const styles = StyleSheet.create({
   },
 
   metaSection: {
-    backgroundColor: '#f8fafc',
     borderRadius: 12,
     padding: 16,
   },

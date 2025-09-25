@@ -56,14 +56,14 @@ export const ImageNotificationScreen = () => {
         showsVerticalScrollIndicator={false}
       >
         {/* Notification Card */}
-        <View style={styles.notificationCard}>
+        <ThemedView style={styles.notificationCard}>
           {/* Header Section */}
           <View style={styles.cardHeader}>
-            <View style={styles.iconContainer}>
+            <ThemedView style={styles.iconContainer}>
               <ThemedText style={styles.iconText}>
                 {getTypeIcon(notification.type)}
               </ThemedText>
-            </View>
+            </ThemedView>
             <View style={styles.cardHeaderText}>
               <ThemedText style={styles.cardTitle}>
                 {notification.title}
@@ -77,7 +77,7 @@ export const ImageNotificationScreen = () => {
           {/* Image Section */}
           {notification.imageUrl && (
             <View style={styles.imageSection}>
-              <View style={styles.imageContainer}>
+              <ThemedView style={styles.imageContainer}>
                 {!imageLoadError ? (
                   <Image
                     source={{ uri: notification.imageUrl }}
@@ -85,14 +85,14 @@ export const ImageNotificationScreen = () => {
                     onError={handleImageError}
                   />
                 ) : (
-                  <View style={styles.imageLoadError}>
+                  <ThemedView style={styles.imageLoadError}>
                     <ThemedText style={styles.imageErrorText}>
                       📷{'\n'}
                       Image could not be loaded
                     </ThemedText>
-                  </View>
+                  </ThemedView>
                 )}
-              </View>
+              </ThemedView>
             </View>
           )}
 
@@ -128,7 +128,7 @@ export const ImageNotificationScreen = () => {
               </View>
             )}
           </View>
-        </View>
+        </ThemedView>
       </ScrollView>
     </ThemedView>
   );

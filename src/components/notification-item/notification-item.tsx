@@ -1,8 +1,9 @@
 import { ThemedText } from "@/components/themed-text";
+import { NotificationType } from "@/constants/notification";
 import { Notification } from "@/lib/types/notification";
 import { formatTime, getTypeIcon, getTypeLabel } from "@/lib/utils/notifications";
 import React from "react";
-import { Image, Linking, TouchableOpacity, View } from "react-native";
+import { Image, TouchableOpacity, View } from "react-native";
 import { styles } from "./notification-item.styles";
 
 type NotificationItemProps = {
@@ -17,12 +18,7 @@ export const NotificationItem = ({
   const handlePress = () => {
     if (onPress) {
       onPress(notification);
-    } else {
-      if (notification.type === 2 && notification.imageUrl) {
-      } else if (notification.type === 3 && notification.youtubeUrl) {
-        Linking.openURL(notification.youtubeUrl);
-      }
-    }
+    } 
   };
 
   return (
@@ -52,7 +48,7 @@ export const NotificationItem = ({
         </ThemedText>
       )}
 
-      {notification.type === 2 && notification.imageUrl && (
+      {notification.type === NotificationType.IMAGE && notification.imageUrl && (
         <View style={styles.imageContainer}>
           <Image
             source={{ uri: notification.imageUrl }}
@@ -62,7 +58,7 @@ export const NotificationItem = ({
         </View>
       )}
 
-      {notification.type === 3 && notification.youtubeUrl && (
+      {notification.type === NotificationType.VIDEO && notification.youtubeUrl && (
         <View style={styles.videoContainer}>
           <ThemedText style={styles.videoLabel}>
             🎥 Tap to watch video

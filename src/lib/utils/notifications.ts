@@ -21,7 +21,6 @@ export const requestNotificationPermission = async (): Promise<
   string | null
 > => {
   try {
-    // Expo notifications ile permission iste
     const { status } = await Notifications.requestPermissionsAsync();
     
     if (status !== 'granted') {
@@ -29,7 +28,6 @@ export const requestNotificationPermission = async (): Promise<
       return null;
     }
 
-    // FCM token al
     const token = await getToken(getMessaging());
     return token;
   } catch (error) {
@@ -97,7 +95,7 @@ export const parseNotificationFromFCM = (fcmMessage: CaskRemoteMessage): Notific
 };
 
 /**
- * Notification'ı storage'a ekler
+ * Adds or updates a notification in storage
  */
 export const addNotificationToStorage = (notification: Notification): void => {
   try{
@@ -125,7 +123,6 @@ export const addNotificationToStorage = (notification: Notification): void => {
 export const handleIncomingNotification = (fcmMessage: FirebaseMessagingTypes.RemoteMessage): void => {
   
   try {
-    // Runtime'da type safety için casting yapıyoruz
     const notification = parseNotificationFromFCM(fcmMessage as CaskRemoteMessage);
     addNotificationToStorage(notification);
   } catch (error) {

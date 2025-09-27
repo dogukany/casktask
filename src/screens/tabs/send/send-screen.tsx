@@ -6,7 +6,7 @@ import { useThemeColor } from "@/hooks/use-theme-color";
 import {
   NotificationFormData,
   notificationFormSchema,
-} from "@/lib/types/validation";
+} from "@/lib/validations";
 import { useSendNotificationMutation } from "@/service/mutations/notification-mutations";
 import { useNotificationPermissionsQuery } from "@/service/queries";
 import { zodResolver } from "@hookform/resolvers/zod";

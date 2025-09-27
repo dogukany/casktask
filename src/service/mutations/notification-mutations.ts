@@ -1,4 +1,4 @@
-import { NotificationFormData } from "@/lib/types/validation";
+import { NotificationFormData } from "@/lib/validations";
 import { useMutation } from "@tanstack/react-query";
 
 type SendNotificationRequest = {
